@@ -37,6 +37,12 @@ CXXFLAGS += -fPIC -I $(ERTS_INCLUDE_DIR) -I $(ERL_INTERFACE_INCLUDE_DIR)
 LDLIBS += -L $(ERL_INTERFACE_LIB_DIR) -lei
 LDFLAGS += -shared
 
+PCSC_CFLAGS	?= $(shell pkg-config --cflags uchardet)
+PCSC_LIBS	?= $(shell pkg-config --libs uchardet)
+CFLAGS 		+= $(PCSC_CFLAGS)
+CXXFLAGS 	+= $(PCSC_CFLAGS)
+LDLIBS 		+= $(PCSC_LIBS)
+
 # Verbosity.
 
 c_verbose_0 = @echo " C     " $(?F);
